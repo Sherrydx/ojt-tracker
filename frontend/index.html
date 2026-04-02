@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>OJT Tracker</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>OJT Tracker Dashboard</title>
 </head>
 <body>
-    <h1>Welcome to the OJT Tracker</h1>
-    <script src="app.js"></script>
+    <div class="navbar">
+        <div class="nav-left">
+            <span class="play-icon">▶</span>
+            <span class="nav-title">Home</span>
+        </div>
+        <button class="add-btn">+</button>
+    </div>
+
+    <div class="breadcrumb">
+        <span>Desktop</span>
+        <span> › </span>
+        <span>Primary</span>
+        <span> › </span>
+        <span>1920</span>
+        <span> › </span>
+    </div>
+
+    <div class="container">
+        <button id="checkInOutBtn" class="check-btn">Check-In</button>
+
+        <div class="content">
+    <div class="greeting-section">
+        <h1 id="greeting">Good Morning, User!</h1>
+    </div>
+
+            <div class="timer-section">
+    <div class="timer-display">
+        <h2 id="hours-display">0.0</h2>
+        <span class="hrs-label">hrs</span>
+            </div>
+    <p id="total-rendered">Total Rendered: 0 hours and 0 minutes</p>
+    <p id="timer-info">0 days 0hrs and 0mins / 486hrs</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

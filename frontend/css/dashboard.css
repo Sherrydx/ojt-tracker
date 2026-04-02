@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.play-icon {
+    font-size: 14px;
+}
+
+.add-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.add-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+/* Main Container */
+.container {
+    background: linear-gradient(135deg, #6b4a8f 0%, #5a3d7a 50%, #4a2d6a 100%);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Check-In Button */
+.check-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #5a3d7a;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.check-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.check-btn.checked-out {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+/* Content Area */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Greeting Section */
+.greeting-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.greeting-section h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.greeting-section p {
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* Timer Section */
+.timer-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    min-width: 250px;
+}
+
+/* Circular Timer */
+.circular-timer {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.progress-ring-circle {
+    stroke-dasharray: 565.48;
+    stroke-dashoffset: 565.48;
+    transition: stroke-dashoffset 0.35s;
+    stroke-linecap: round;
+}
+
+.timer-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#hours-display {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.timer-label {
+    font-size: 16px;
+    color: #ccc;
+}
+
+#timer-info {
+    font-size: 14px;
+    color: #aaa;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .content {
+        flex-direction: column;
+        margin-top: 60px;
+        gap: 30px;
+    }
+
+    .greeting-section h1 {
+        font-size: 22px;
+    }
+
+    .circular-timer {
+        width: 180px;
+        height: 180px;
+    }
+
+    #hours-display {
+        font-size: 36px;
+    }
+
+    .check-btn {
+        top: 10px;
+        right: 10px;
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .greeting-section h1 {
+        font-size: 18px;
+    }
+
+    .circular-timer {
+        width: 150px;
+        height: 150px;
+    }
+
+    #hours-display {
+        font-size: 28px;
+    }
+
+    .timer-label {
+        font-size: 12px;
+    }
+}
+
+.timer-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.timer-display h2 {
+    font-size: 56px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.hrs-label {
+    font-size: 24px;
+    color: #ccc;
+}
+
+#total-rendered {
+    font-size: 14px;
+    color: #aaa;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#timer-info {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+}
