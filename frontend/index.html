@@ -9,40 +9,69 @@
 <body>
     <div class="navbar">
         <div class="nav-left">
-            <span class="play-icon">▶</span>
             <span class="nav-title">Home</span>
         </div>
         <button class="add-btn">+</button>
     </div>
 
-    <div class="breadcrumb">
-        <span>Desktop</span>
-        <span> › </span>
-        <span>Primary</span>
-        <span> › </span>
-        <span>1920</span>
-        <span> › </span>
-    </div>
-
     <div class="container">
-        <button id="checkInOutBtn" class="check-btn">Check-In</button>
+    <button id="checkInOutBtn" class="check-btn">Check-In</button>
 
-        <div class="content">
-    <div class="greeting-section">
-        <h1 id="greeting">Good Morning, User!</h1>
-    </div>
+    <div class="main-content">
+        <div class="top-section">
+            <div class="greeting-section">
+                <h1 id="greeting">Good Morning, User!</h1>
+            </div>
 
             <div class="timer-section">
-    <div class="timer-display">
-        <h2 id="hours-display">0.0</h2>
-        <span class="hrs-label">hrs</span>
-            </div>
-    <p id="total-rendered">Total Rendered: 0 hours and 0 minutes</p>
-    <p id="timer-info">0 days 0hrs and 0mins / 486hrs</p>
+                <div class="timer-display">
+                    <h2 id="hours-display">0.0</h2>
+                    <span class="hrs-label">hrs</span>
+                </div>
+                <p id="total-rendered">Total Rendered this shift: 0 hours and 0 minutes</p>
+                <p id="timer-info">0 days 0hrs and 0mins / 486hrs</p>
             </div>
         </div>
-    </div>
 
-    <script src="js/dashboard.js"></script>
+        <div class="bottom-section">
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="month-btn">‹</button>
+                    <h2 id="monthYear"></h2>
+                    <button id="nextMonth" class="month-btn">›</button>
+                </div>
+                
+                <div class="calendar-weekdays">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                
+                <div class="calendar-days" id="calendarDays"></div>
+            </div>
+
+            <div class="right-section"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Note Modal -->
+<div id="noteModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Add Note for <span id="modalDate"></span></h3>
+        <textarea id="noteText" placeholder="Enter your note..."></textarea>
+        <button id="saveNote" class="save-btn">Save Note</button>
+        <button id="deleteNote" class="delete-btn">Delete Note</button>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+<script src="js/calendar.js"></script>
+
 </body>
 </html>

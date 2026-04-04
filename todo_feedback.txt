@@ -1,0 +1,26 @@
+Todo:
+v1.1
+- Database 
+- Log in UI
+- Error handlers
+- Working accounts per log in
+v1.2
+- Admin and Superadmin accounts and their differentiations
+- Admin dashboard
+- Superadmin dashboard
+
+
+
+
+Feedbacks:
+- Side bar navigation
+- List of events
+- Real time notifications
+- Table for overall / upcoming events
+- Location if on site or remote
+- Shift schedule, can be seen on admin panel if student went OT
+- State of user (on shift / half day / on leave /)
+- Real time of clock and date
+- Logs history
+
+

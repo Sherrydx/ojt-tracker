@@ -2,7 +2,8 @@
 let isCheckedIn = false;
 let checkInTime = null;
 let checkOutTime = null;
-let elapsedSeconds = 0;
+let totalElapsedSeconds = 0; // Changed: keeps cumulative total
+let checkInSessionSeconds = 0; // Changed: just for current session
 let targetHours = 8; // 8 hour workday
 let timerInterval = null;
 
@@ -11,11 +12,7 @@ const checkInOutBtn = document.getElementById('checkInOutBtn');
 const greeting = document.getElementById('greeting');
 const hoursDisplay = document.getElementById('hours-display');
 const timerInfo = document.getElementById('timer-info');
-const progressRing = document.querySelector('.progress-ring-circle');
-
-const circumference = progressRing.r.baseVal.value * 2 * Math.PI;
-progressRing.style.strokeDasharray = circumference;
-progressRing.style.strokeDashoffset = circumference;
+const totalRendered = document.getElementById('total-rendered');
 
 // Set greeting based on time of day
 function setGreeting() {
@@ -23,21 +20,14 @@ function setGreeting() {
     let greetingText = '';
     
     if (hour < 12) {
-        greetingText = 'Good Morning';
+        greetingText = 'Good Morning, User!';
     } else if (hour < 18) {
-        greetingText = 'Good Afternoon';
+        greetingText = 'Good Afternoon, User!';
     } else {
-        greetingText = 'Good Night';
+        greetingText = 'Good Evening, User!';
     }
     
-    greeting.textContent = greetingText + ', User!';
-}
-
-// Update progress ring
-function updateProgressRing(hours) {
-    const progress = Math.min(hours / targetHours, 1);
-    const offset = circumference - (progress * circumference);
-    progressRing.style.strokeDashoffset = offset;
+    greeting.textContent = greetingText;
 }
 
 // Format hours to decimal (e.g., 1.5)
@@ -47,16 +37,18 @@ function formatHours(seconds) {
 
 // Update timer display
 function updateTimerDisplay() {
-    const hours = parseFloat(formatHours(elapsedSeconds));
-    const minutes = Math.floor((elapsedSeconds % 3600) / 60);
+    const hours = parseFloat(formatHours(totalElapsedSeconds));
+    const minutes = Math.floor((totalElapsedSeconds % 3600) / 60);
     
     // Top display: decimal format (3.5)
     hoursDisplay.textContent = hours.toFixed(1);
     
-    // Bottom display: time format (3hrs 30mins)
-    timerInfo.textContent = `${Math.floor(hours)}hrs ${minutes}mins`;
+    // Middle display: readable format
+    const h = Math.floor(hours);
+    totalRendered.textContent = `Total Rendered this shift: ${h} hours and ${minutes} minutes`;
     
-    updateProgressRing(hours);
+    // Bottom display: time format + target
+    timerInfo.textContent = `${h}hrs ${minutes}mins / 486 hrs`;
 }
 
 // Start the timer
@@ -65,7 +57,9 @@ function startTimer() {
     
     timerInterval = setInterval(() => {
         if (isCheckedIn) {
-            elapsedSeconds++;
+            // Calculate actual elapsed time from when you checked in
+            const now = new Date();
+            totalElapsedSeconds = Math.floor((now - checkInTime) / 1000);
             updateTimerDisplay();
         }
     }, 1000);
@@ -87,7 +81,7 @@ checkInOutBtn.addEventListener('click', () => {
         // CHECK-IN
         isCheckedIn = true;
         checkInTime = now;
-        elapsedSeconds = 0;
+        checkInSessionSeconds = 0; // Reset session timer only
         
         checkInOutBtn.textContent = 'Check-Out';
         checkInOutBtn.classList.add('checked-out');
@@ -108,38 +102,21 @@ checkInOutBtn.addEventListener('click', () => {
         checkInOutBtn.textContent = 'Check-In';
         checkInOutBtn.classList.remove('checked-out');
         
-        const hoursWorked = formatHours(elapsedSeconds);
-        const minutesWorked = Math.floor((elapsedSeconds % 3600) / 60);
+        const hoursWorked = formatHours(totalElapsedSeconds);
+        const minutesWorked = Math.floor((totalElapsedSeconds % 3600) / 60);
         
         alert(`Checked out!\n\nHours worked today: ${hoursWorked}hrs (${Math.floor(parseFloat(hoursWorked))}hrs ${minutesWorked}mins)\n\nChecked in: ${checkInTime.toLocaleTimeString()}\nChecked out: ${checkOutTime.toLocaleTimeString()}`);
         
         console.log('✓ Checked out at:', checkOutTime.toLocaleTimeString());
         console.log('Hours worked:', hoursWorked);
         
-        // Reset for next day
-        elapsedSeconds = 0;
-        updateTimerDisplay();
+        // DON'T reset totalElapsedSeconds here - keep the cumulative total!
+        checkInSessionSeconds = 0; // Only reset session timer
     }
 });
-
-function setGreeting() {
-    const hour = new Date().getHours();
-    let greetingText = '';
-    
-    if (hour < 12) {
-        greetingText = 'Good Morning, User!';
-    } else if (hour < 18) {
-        greetingText = 'Good Afternoon, User!';
-    } else {
-        greetingText = 'Good Evening, User!';
-    }
-    
-    document.getElementById('greeting').textContent = greetingText;
-}
 
 // Initialize on page load
 window.addEventListener('load', () => {
     setGreeting();
     updateTimerDisplay();
 });
-
