@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>OJT Tracker Dashboard</title>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="sidebar-toggle">
+                <button id="sidebarToggle" class="toggle-btn">◁</button>
+            </div>
+            <div class="company-info">
+                <span class="company-label">Company Name</span>
+                <h3 class="company-name">Company Name Here</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <span class="nav-label">Main Menu</span>
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Attendance</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendar</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </div>
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item logout">
+                <span class="nav-icon">↪</span>
+                <span>Log Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Top Header Bar -->
+        <header class="top-header">
+            <div class="header-left">
+                <h2 id="currentDateTime" class="header-datetime">Current Date and Time:</h2>
+            </div>
+            <div class="header-right">
+                <button class="notification-btn">🔔</button>
+                <button id="themeToggle" class="theme-toggle-btn">🌙</button>
+                <div class="user-profile">
+                    <span class="user-name">Rye</span>
+                      <img src="https://avatars.githubusercontent.com/u/91766340?v=4" alt="Rye" style="width: 28px; height: 28px; border-radius: 50%;">
+                    <button class="more-btn">⋮</button>
+                 </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Dashboard Title Row -->
+            <div class="dashboard-title-row">
+                <h1 class="page-title">Dashboard</h1>
+                <button id="checkInOutBtn" class="check-btn">Check In</button>
+            </div>
+
+            <!-- Stats Cards Row -->
+            <div class="stats-row">
+                <div class="stat-card stat-card-large">
+                    <h3 class="stat-label">Total Hours Rendered This Shift</h3>
+                    <div class="stat-value-row">
+                        <span id="hours-display" class="stat-value">0.0</span>
+                        <span class="stat-unit">hrs</span>
+                    </div>
+                    <p id="total-rendered" class="stat-sub">0 hrs and 0 minutes</p>
+                </div>
+                <div class="stat-card stat-card-small">
+                    <h3 class="stat-label">Total Rendered Hrs</h3>
+                    <p id="timer-info" class="stat-sub-total">0hrs 0mins / 486 hrs</p>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Calendar + Right Panel -->
+            <div class="bottom-section">
+                <!-- Calendar -->
+                <div class="calendar-card">
+                    <h3 class="card-title">Calendar</h3>
+                    <div class="calendar-controls">
+                        <div class="calendar-nav">
+                            <button id="prevMonth" class="month-btn">‹</button>
+                            <span id="monthYear" class="month-label"></span>
+                            <button id="nextMonth" class="month-btn">›</button>
+                        </div>
+                        <div class="view-tabs">
+                            <button class="view-tab">Year</button>
+                            <button class="view-tab">Week</button>
+                            <button class="view-tab active">Month</button>
+                            <button class="view-tab">Day</button>
+                        </div>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <div class="weekday">Sun</div>
+                        <div class="weekday">Mon</div>
+                        <div class="weekday">Tue</div>
+                        <div class="weekday">Wed</div>
+                        <div class="weekday">Thu</div>
+                        <div class="weekday">Fri</div>
+                        <div class="weekday">Sat</div>
+                    </div>
+                    <div class="calendar-days" id="calendarDays"></div>
+                    <div class="calendar-legend">
+                        <span class="legend-item"><span class="legend-dot holiday-dot"></span> Holidays</span>
+                        <span class="legend-item"><span class="legend-dot event-dot"></span> Company Events</span>
+                    </div>
+                </div>
+
+                <!-- Right Side Panel -->
+                <div class="right-panel">
+                    <div class="panel-card">
+                        <h3 class="card-title">Upcoming events</h3>
+                        <div class="placeholder-content"></div>
+                    </div>
+                    <div class="panel-card">
+                        <h3 class="card-title">Notifications</h3>
+                        <div class="notification-list">
+                            <div class="notification-item placeholder"></div>
+                            <div class="notification-item placeholder"></div>
+                            <div class="notification-item placeholder"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Note Modal -->
+    <div id="noteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add Note for <span id="modalDate"></span></h3>
+            <textarea id="noteText" placeholder="Enter your note..."></textarea>
+            <button id="saveNote" class="save-btn">Save Note</button>
+            <button id="deleteNote" class="delete-btn">Delete Note</button>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+</html>

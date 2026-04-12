@@ -1,5 +1,15 @@
 ## Progress Log
 
+### 2026-04-12
+- Fixed Database Auth bugs
+- Added error handlings
+- Reworked and fixed db-backend flow
+- v0.1.3
+
+### 2026-04-05
+- Created Log in UI
+- Rework of dashboard UI
+
 ### 2026-04-05
 - Installed tailwind.css
 
