@@ -9,3 +9,5 @@ Not the final readme, app still on development.
 Working account:
 User: test@test.com
 pass: test12345
+
+Run local FastAPI server temporarily as well
